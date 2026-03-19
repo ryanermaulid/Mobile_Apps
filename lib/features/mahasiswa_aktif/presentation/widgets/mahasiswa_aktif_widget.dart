@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:modul_4/core/constants/constants.dart';
 import 'package:modul_4/features/mahasiswa_aktif/data/models/mahasiswa_aktif_model.dart';
 
 class MahasiswaAktifCard extends StatelessWidget {
@@ -11,13 +10,6 @@ class MahasiswaAktifCard extends StatelessWidget {
     required this.mahasiswa,
     this.gradientColors,
   });
-
-  Color _getIpkColor(double ipk) {
-    if (ipk >= 3.5) return Colors.green;
-    if (ipk >= 3.0) return Colors.blue;
-    if (ipk >= 2.5) return Colors.orange;
-    return Colors.red;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,10 +53,11 @@ class MahasiswaAktifCard extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  mahasiswa.nama.substring(0, 1).toUpperCase(),
+                  // DIUBAH: pakai id sebagai avatar
+                  '${mahasiswa.id}',
                   style: const TextStyle(
                     color: Colors.white,
-                    fontSize: 24,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -77,7 +70,8 @@ class MahasiswaAktifCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    mahasiswa.nama,
+                    // DIUBAH: nama → title
+                    mahasiswa.title,
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -87,7 +81,8 @@ class MahasiswaAktifCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    'NIM: ${mahasiswa.nim}',
+                    // DIUBAH: nim → id
+                    'ID: ${mahasiswa.id}',
                     style: TextStyle(
                       fontSize: 13,
                       color: Colors.grey[600],
@@ -95,43 +90,46 @@ class MahasiswaAktifCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    'Semester ${mahasiswa.semester} • Angkatan ${mahasiswa.angkatan}',
+                    // DIUBAH: semester/angkatan → body
+                    mahasiswa.body,
                     style: TextStyle(
                       fontSize: 13,
                       color: Colors.grey[600],
                     ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ],
               ),
             ),
-            // IPK Badge
+            // DIUBAH: IPK badge → userId badge
             Container(
               padding: const EdgeInsets.symmetric(
                 horizontal: 12,
                 vertical: 8,
               ),
               decoration: BoxDecoration(
-                color: _getIpkColor(mahasiswa.ipk).withOpacity(0.1),
+                color: colors[0].withOpacity(0.1),
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: _getIpkColor(mahasiswa.ipk).withOpacity(0.3),
+                  color: colors[0].withOpacity(0.3),
                 ),
               ),
               child: Column(
                 children: [
                   Text(
-                    mahasiswa.ipk.toStringAsFixed(2),
+                    '${mahasiswa.userId}',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
-                      color: _getIpkColor(mahasiswa.ipk),
+                      color: colors[0],
                     ),
                   ),
                   Text(
-                    'IPK',
+                    'User',
                     style: TextStyle(
                       fontSize: 11,
-                      color: _getIpkColor(mahasiswa.ipk),
+                      color: colors[0],
                     ),
                   ),
                 ],

@@ -1,58 +1,47 @@
+import 'dart:convert';
+import 'package:dio/dio.dart';
+import 'package:http/http.dart' as http;
 import 'package:modul_4/features/mahasiswa/data/models/mahasiswa_model.dart';
 
 class MahasiswaRepository {
-  Future<List<MahasiswaModel>> getMahasiswaList() async {
-    await Future.delayed(const Duration(seconds: 1));
+  final Dio _dio = Dio(
+    BaseOptions(
+      baseUrl: 'https://jsonplaceholder.typicode.com',
+      headers: {'Accept': 'application/json'},
+    ),
+  );
 
-    return [
-      MahasiswaModel(
-        nama: 'Andi Firmansyah',
-        nim: '2021001',
-        email: 'andi.firmansyah@student.com',
-        jurusan: 'Teknik Informatika',
-        angkatan: '2021',
-        status: 'Aktif',
-      ),
-      MahasiswaModel(
-        nama: 'Bela Safitri',
-        nim: '2021002',
-        email: 'bela.safitri@student.com',
-        jurusan: 'Teknik Informatika',
-        angkatan: '2021',
-        status: 'Aktif',
-      ),
-      MahasiswaModel(
-        nama: 'Cahyo Nugroho',
-        nim: '2020001',
-        email: 'cahyo.nugroho@student.com',
-        jurusan: 'Teknik Informatika',
-        angkatan: '2020',
-        status: 'Aktif',
-      ),
-      MahasiswaModel(
-        nama: 'Dewi Permata',
-        nim: '2020002',
-        email: 'dewi.permata@student.com',
-        jurusan: 'Teknik Informatika',
-        angkatan: '2020',
-        status: 'Lulus',
-      ),
-      MahasiswaModel(
-        nama: 'Eko Prasetyo',
-        nim: '2019001',
-        email: 'eko.prasetyo@student.com',
-        jurusan: 'Teknik Informatika',
-        angkatan: '2019',
-        status: 'Lulus',
-      ),
-      MahasiswaModel(
-        nama: 'Fani Oktavia',
-        nim: '2022001',
-        email: 'fani.oktavia@student.com',
-        jurusan: 'Teknik Informatika',
-        angkatan: '2022',
-        status: 'Aktif',
-      ),
-    ];
+  /// Mendapatkan daftar mahasiswa menggunakan http
+  Future<List<MahasiswaModel>> getMahasiswaListHttp() async {
+    final response = await http.get(
+      Uri.parse('https://jsonplaceholder.typicode.com/comments'),
+      headers: {'Accept': 'application/json'},
+    );
+
+    if (response.statusCode == 200) {
+      final List<dynamic> data = jsonDecode(response.body);
+      print(data); // Debug
+      return data.map((json) => MahasiswaModel.fromJson(json)).toList();
+    } else {
+      throw Exception('Gagal memuat data mahasiswa: ${response.statusCode}');
+    }
+  }
+
+  /// Mendapatkan daftar mahasiswa menggunakan dio
+  Future<List<MahasiswaModel>> getMahasiswaList() async {
+    try {
+      final response = await _dio.get('/comments');
+
+      if (response.statusCode == 200) {
+        final List<dynamic> data = response.data;
+        print(data); // Debug
+        return data.map((json) => MahasiswaModel.fromJson(json)).toList();
+      } else {
+        throw Exception('Gagal memuat data mahasiswa: ${response.statusCode}');
+      }
+    } on DioException catch (e) {
+      print('DioError: ${e.message}');
+      throw Exception('Gagal memuat data mahasiswa: ${e.message}');
+    }
   }
 }

@@ -49,8 +49,6 @@ class _MahasiswaCardState extends State<MahasiswaCard>
           Theme.of(context).primaryColor.withOpacity(0.7),
         ];
 
-    final isAktif = widget.mahasiswa.status == 'Aktif';
-
     return GestureDetector(
       onTapDown: (_) => _controller.forward(),
       onTapUp: (_) {
@@ -109,7 +107,8 @@ class _MahasiswaCardState extends State<MahasiswaCard>
                   ),
                   child: Center(
                     child: Text(
-                      widget.mahasiswa.nama.substring(0, 1).toUpperCase(),
+                      // DIUBAH: nama → name
+                      widget.mahasiswa.name.substring(0, 1).toUpperCase(),
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 24,
@@ -124,52 +123,22 @@ class _MahasiswaCardState extends State<MahasiswaCard>
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              widget.mahasiswa.nama,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                letterSpacing: -0.3,
-                              ),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                          // Status Badge
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 3,
-                            ),
-                            decoration: BoxDecoration(
-                              color: isAktif
-                                  ? Colors.green.withOpacity(0.1)
-                                  : Colors.orange.withOpacity(0.1),
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(
-                                color: isAktif
-                                    ? Colors.green.withOpacity(0.3)
-                                    : Colors.orange.withOpacity(0.3),
-                              ),
-                            ),
-                            child: Text(
-                              widget.mahasiswa.status,
-                              style: TextStyle(
-                                fontSize: 11,
-                                fontWeight: FontWeight.w600,
-                                color: isAktif ? Colors.green : Colors.orange,
-                              ),
-                            ),
-                          ),
-                        ],
+                      Text(
+                        // DIUBAH: nama → name
+                        widget.mahasiswa.name,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: -0.3,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
                       const SizedBox(height: 8),
+                      // DIUBAH: nim → id
                       _buildInfoRow(
                         Icons.badge_outlined,
-                        'NIM: ${widget.mahasiswa.nim}',
+                        'ID: ${widget.mahasiswa.id}',
                       ),
                       const SizedBox(height: 4),
                       _buildInfoRow(
@@ -177,9 +146,10 @@ class _MahasiswaCardState extends State<MahasiswaCard>
                         widget.mahasiswa.email,
                       ),
                       const SizedBox(height: 4),
+                      // DIUBAH: angkatan → body (comment body)
                       _buildInfoRow(
-                        Icons.calendar_today_outlined,
-                        'Angkatan ${widget.mahasiswa.angkatan}',
+                        Icons.comment_outlined,
+                        widget.mahasiswa.body,
                       ),
                     ],
                   ),
