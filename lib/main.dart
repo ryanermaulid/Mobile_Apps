@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:modul_4/core/constants/constants.dart';
-import 'package:modul_4/core/theme/theme.dart';
-import 'package:modul_4/features/dashboard/presentation/pages/dashboard_page.dart';
+import 'package:mobile_apps/core/constants/constants.dart';
+import 'package:mobile_apps/core/theme/theme.dart';
+import 'package:mobile_apps/features/dashboard/presentation/pages/dashboard_page.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));

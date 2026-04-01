@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:modul_4/core/constants/constants.dart';
-import 'package:modul_4/features/mahasiswa/data/models/mahasiswa_model.dart';
+import 'package:mobile_apps/features/mahasiswa/data/models/mahasiswa_model.dart';
 
 class MahasiswaCard extends StatefulWidget {
   final MahasiswaModel mahasiswa;
@@ -135,7 +134,6 @@ class _MahasiswaCardState extends State<MahasiswaCard>
                         overflow: TextOverflow.ellipsis,
                       ),
                       const SizedBox(height: 8),
-                      // DIUBAH: nim → id
                       _buildInfoRow(
                         Icons.badge_outlined,
                         'ID: ${widget.mahasiswa.id}',
@@ -146,10 +144,14 @@ class _MahasiswaCardState extends State<MahasiswaCard>
                         widget.mahasiswa.email,
                       ),
                       const SizedBox(height: 4),
-                      // DIUBAH: angkatan → body (comment body)
                       _buildInfoRow(
-                        Icons.comment_outlined,
-                        widget.mahasiswa.body,
+                          Icons.person_outline,
+                          widget.mahasiswa.username,
+                      ),
+                      const SizedBox(height: 4),
+                      _buildInfoRow(
+                          Icons.location_city_outlined,
+                          widget.mahasiswa.address.city,
                       ),
                     ],
                   ),

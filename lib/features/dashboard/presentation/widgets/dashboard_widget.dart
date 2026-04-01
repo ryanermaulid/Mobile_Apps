@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:modul_4/core/constants/constants.dart';
-import 'package:modul_4/features/dashboard/data/models/dashboard_model.dart';
+import 'package:mobile_apps/core/constants/constants.dart';
+import 'package:mobile_apps/features/dashboard/data/models/dashboard_model.dart';
 
 // Simple Stat Card
 class StatCard extends StatelessWidget {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:modul_4/features/mahasiswa_aktif/data/models/mahasiswa_aktif_model.dart';
+import 'package:mobile_apps/features/mahasiswa_aktif/data/models/mahasiswa_aktif_model.dart';
 
 class MahasiswaAktifCard extends StatelessWidget {
   final MahasiswaAktifModel mahasiswa;

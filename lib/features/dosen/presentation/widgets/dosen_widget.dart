@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:modul_4/core/constants/constants.dart';
-import 'package:modul_4/features/dosen/data/models/dosen_model.dart';
+import 'package:mobile_apps/core/constants/constants.dart';
+import 'package:mobile_apps/features/dosen/data/models/dosen_model.dart';
 
 class ModernDosenCard extends StatefulWidget {
   final DosenModel dosen;

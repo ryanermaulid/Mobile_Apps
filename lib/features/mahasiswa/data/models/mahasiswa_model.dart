@@ -1,35 +1,67 @@
+class AddressModel {
+  final String street;
+  final String suite;
+  final String city;
+  final String zipcode;
+
+  AddressModel({
+    required this.street,
+    required this.suite,
+    required this.city,
+    required this.zipcode,
+  });
+
+  factory AddressModel.fromJson(Map<String, dynamic> json) {
+    return AddressModel(
+      street: json['street'] ?? '',
+      suite: json['suite'] ?? '',
+      city: json['city'] ?? '',
+      zipcode: json['zipcode'] ?? '',
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'street': street,
+      'suite': suite,
+      'city': city,
+      'zipcode': zipcode,
+    };
+  }
+}
+
 class MahasiswaModel {
   final int id;
-  final int postId;
   final String name;
+  final String username;  // ← ganti postId & body dengan ini
   final String email;
-  final String body;
+  final AddressModel address;  // ← tambah address
 
   MahasiswaModel({
     required this.id,
-    required this.postId,
     required this.name,
+    required this.username,
     required this.email,
-    required this.body,
+    required this.address,
   });
 
   factory MahasiswaModel.fromJson(Map<String, dynamic> json) {
     return MahasiswaModel(
       id: json['id'] ?? 0,
-      postId: json['postId'] ?? 0,
       name: json['name'] ?? '',
+      username: json['username'] ?? '',
       email: json['email'] ?? '',
-      body: json['body'] ?? '',
+      address: AddressModel.fromJson(json['address'] ?? {}),
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'postId': postId,
       'name': name,
+      'username': username,
       'email': email,
-      'body': body,
+      'address': address.toJson(),
     };
   }
 }

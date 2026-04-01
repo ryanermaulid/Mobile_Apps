@@ -1,4 +1,4 @@
-import 'package:modul_4/features/dashboard/data/models/dashboard_model.dart';
+import 'package:mobile_apps/features/dashboard/data/models/dashboard_model.dart';
 
 class DashboardRepository {
   Future<DashboardData> getDashboardData() async {

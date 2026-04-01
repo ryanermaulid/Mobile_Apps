@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:modul_4/core/constants/constants.dart';
+import 'package:mobile_apps/core/constants/constants.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});

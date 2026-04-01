@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:modul_4/features/mahasiswa_aktif/data/models/mahasiswa_aktif_model.dart';
-import 'package:modul_4/features/mahasiswa_aktif/data/repositories/mahasiswa_aktif_repository.dart';
+import 'package:mobile_apps/features/mahasiswa_aktif/data/models/mahasiswa_aktif_model.dart';
+import 'package:mobile_apps/features/mahasiswa_aktif/data/repositories/mahasiswa_aktif_repository.dart';
 
 final mahasiswaAktifRepositoryProvider =
     Provider<MahasiswaAktifRepository>((ref) {

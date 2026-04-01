@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:modul_4/core/constants/constants.dart';
-import 'package:modul_4/core/widgets/widgets.dart';
-import 'package:modul_4/features/mahasiswa_aktif/presentation/providers/mahasiswa_aktif_provider.dart';
-import 'package:modul_4/features/mahasiswa_aktif/presentation/widgets/mahasiswa_aktif_widget.dart';
+import 'package:mobile_apps/core/constants/constants.dart';
+import 'package:mobile_apps/core/widgets/widgets.dart';
+import 'package:mobile_apps/features/mahasiswa_aktif/presentation/providers/mahasiswa_aktif_provider.dart';
+import 'package:mobile_apps/features/mahasiswa_aktif/presentation/widgets/mahasiswa_aktif_widget.dart';
 
 class MahasiswaAktifPage extends ConsumerWidget {
   const MahasiswaAktifPage({super.key});
